@@ -1,0 +1,46 @@
+class GoCardAccount:
+    def __init__(self, balance):
+        self.balance = float(balance)
+
+    def ride(self, amount):
+        '''deducts users inputs, doesn't print it'''
+        if self.balance - amount < 0:
+            print("Need more money, Top up using 't!")
+        self.balance -= amount
+        return
+
+    def top_up(self, add):
+        '''User topping up'''
+        self.balance += add
+        return
+
+
+money = GoCardAccount(input("Creating account. Input initial balance: "))
+u_imp = input("")
+balance = {"bal": money.balance}
+# amount = {"amount": u_imp[:1].balance}
+ride1 = []
+top_up = []
+
+while u_imp != "q":
+
+    u_imp = input("")
+    if "r" in u_imp[0] and u_imp[1:] != "":
+        x = float(u_imp[1:])
+        money.ride(x)
+
+    elif "t" in u_imp[0] and u_imp[1:] != "":
+        x = float(u_imp[1:])
+        money.top_up(x)
+
+    elif "b" in u_imp[0] and u_imp[1:] == "":
+        print(f"Balance = $",[money.balance])
+
+    elif u_imp == "q":
+            print("Statement:")
+            print("event {:<20s} amount ($) {:<20s} balance ($)")
+            print("Initial balance {:<20s}", ["bal"])
+
+
+    else:
+        print("INVALID")
